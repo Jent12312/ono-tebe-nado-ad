@@ -5,22 +5,14 @@
 }
 
 body {
-  min-width: 1100px;
-  margin: 0;
-  font-family: "Raleway", Arial, sans-serif;
-  color: #000;
-  background-color: #fff;
+    min-width: 1100px;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    color: #000;
+    background-color: #fff;
 }
 
-h1,
-h2,
-h3,
-p,
-ul,
-li,
-a,
-address,
-button {
+h1, h2, h3, p, ul, li, a, address, button {
   margin: 0;
   padding: 0;
 }
@@ -53,7 +45,7 @@ a {
 /* HEADER */
 .header {
   display: grid;
-  grid-template-columns: 1fr auto 1fr; /* Логотип ровно по центру */
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 92px 50px 96px;
 }
@@ -65,7 +57,7 @@ a {
 .header__links-list {
   display: flex;
   align-items: center;
-  gap: 25px; /* Увеличиваем общий отступ, чтобы между текстом и кружком было ~12-13px */
+  gap: 25px;
   font-size: 18px;
 }
 
@@ -75,13 +67,12 @@ a {
   list-style: none;
 }
 
-/* Белый кружок вместо точки */
 .header__links-list-item:not(:last-child)::after {
-  content: "○"; /* Используем пустой кружок */
-  margin-left: 25px; /* Расстояние после пункта меню до кружка */
-  font-size: 18px;
+  content: "○";
+  margin-left: 25px;
+  font-size: 14px;
   line-height: 1;
-  text-decoration: none; /* Чтобы кружок не подчеркивался */
+  opacity: 0.9;
 }
 
 .header__link {
@@ -100,14 +91,7 @@ a {
 
 .header__address {
   justify-self: end;
-  line-height: 1.35; /* Межстрочный интервал как в макете */
-}
-
-.address__link {
-  display: block;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  margin-bottom: 2px;
+  line-height: 1.35;
 }
 
 .address__text {
@@ -174,14 +158,19 @@ a {
   cursor: pointer;
 }
 
+/* LOTS */
 .lots {
-  padding: 179px 24px 146px; /* Внешние отступы секции */
+  display: grid;
+  justify-content: center;
+  /* Ровно 1052px = ширина карточек (334*3) + отступы (25*2), 
+  так заголовок будет выровнен идеально по левому краю первого лота */
+  grid-template-columns: 1052px; 
+  padding: 180px 0 146px; 
 }
 
 .lots__heading {
-  padding-left: 13%;
-  text-align: left;
-  margin: 0 auto 27px;
+  justify-self: start;
+  margin: 0 0 27px;
   font-size: 40px;
   font-weight: 700;
   line-height: 1;
@@ -190,15 +179,13 @@ a {
 
 .lots__card-list {
   display: flex;
-  justify-content: center;
-  gap: 25px; /* Расстояние между карточками */
+  gap: 25px;
   margin-bottom: 30px;
-  list-style: none;
 }
 
 .lots__card-list-item {
   width: 334px;
-  min-height: 596px; /* Высота карточки как в макете */
+  min-height: 596px;
 }
 
 .card-link {
@@ -211,8 +198,7 @@ a {
   position: relative;
   display: flex;
   flex-direction: column;
-  /* Это свойство толкает заголовок вверх, а текст вниз */
-  justify-content: space-between; 
+  justify-content: space-between;
   height: 100%;
   padding: 48px 40px;
   background-position: center;
@@ -224,21 +210,13 @@ a {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный черный оверлей */
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 0;
 }
 
-.card_type_film {
-  background-image: url("../images/card-film.jpg");
-}
-
-.card_type_book {
-  background-image: url("../images/card-book.jpg");
-}
-
-.card_type_picture {
-  background-image: url("../images/card-picture.jpg");
-}
+.card_type_film { background-image: url("../images/card-film.jpg"); }
+.card_type_book { background-image: url("../images/card-book.jpg"); }
+.card_type_picture { background-image: url("../images/card-picture.jpg"); }
 
 .card__title {
   position: relative;
@@ -249,7 +227,7 @@ a {
   line-height: 1.2;
   text-transform: uppercase;
   text-decoration: underline;
-  text-underline-offset: 4px; /* Отступ подчеркивания от текста */
+  text-underline-offset: 4px;
 }
 
 .card__text {
@@ -258,13 +236,11 @@ a {
   color: #fff;
   font-size: 20px;
   font-weight: 400;
-  line-height: 1.2; /* Делаем текст компактнее, как в эталоне */
+  line-height: 1.2;
 }
 
 .lots__look-more-link {
-  padding-left: 13%;
-  width: fit-content; /* Ширина только по тексту */
-  margin: 0 auto; /* Центрируем */
+  justify-self: start;
   font-size: 20px;
   line-height: 1;
   text-decoration: underline;
@@ -274,18 +250,18 @@ a {
 /* ABOUT */
 .about {
   display: grid;
-  /* Первая колонка 334px (как ширина карточки), вторая — остаток */
-  grid-template-columns: 334px 1fr; 
-  gap: 25px; /* Такой же отступ, как между карточками лотов */
-  max-width: 1100px; /* Ограничиваем общую ширину блока */
-  margin: 0 auto; /* Центрируем весь блок по горизонтали */
-  padding: 180px 24px;
+  /* Левая колонка размером ровно в одну карточку (334px) для идеального совпадения сетки */
+  grid-template-columns: 334px 1fr;
+  gap: 25px; 
+  max-width: 1052px; 
+  margin: 0 auto; 
+  padding: 0 0 180px 0;
 }
 
 .about__column_left {
   display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Круг должен быть вверху своей колонки */
+  justify-content: flex-start; /* Выравнивание лого по левому краю карточки сверху */
+  align-items: flex-start; 
 }
 
 .about__logo {
@@ -299,19 +275,13 @@ a {
 }
 
 .about__logo-image {
-  /* Увеличиваем логотип. В макете он такой же, как в хедере */
   width: 256px; 
   height: auto;
   object-fit: contain;
 }
 
-.about__column_right {
-  /* Небольшой отступ сверху, чтобы заголовок был на одной линии с верхом круга */
-  padding-top: 35px; 
-}
-
 .about__title {
-  margin: 0 0 100px; /* Огромный отступ до текста — фишка макета */
+  margin: 0 0 32px; /* Уменьшили отступ для соответствия макету */
   font-size: 40px;
   font-weight: 700;
   line-height: 1;
@@ -319,21 +289,20 @@ a {
 }
 
 .about__text {
-  max-width: 688px; /* Текст не должен растягиваться слишком широко */
+  max-width: 688px; 
   font-size: 20px;
   font-weight: 400;
   line-height: 1.2;
 }
 
 .about__text p:not(:last-child) {
-  margin-bottom: 24px; /* Отступ между абзацами */
+  margin-bottom: 24px; 
 }
 
 /* FOOTER */
 .footer {
   display: grid;
-  /* Делим на 3 равные колонки */
-  grid-template-columns: 1fr auto 1fr; 
+  grid-template-columns: 1fr auto 1fr;
   align-items: start;
   padding: 0 50px 82px;
 }
@@ -342,32 +311,19 @@ a {
   justify-self: start;
 }
 
-/* Меню в одну строку */
 .footer__menu {
   justify-self: center;
 }
 
 .footer__menu-list {
-  display: flex; /* ЭТО КЛЮЧЕВОЕ: выстраивает в ряд */
-  flex-direction: column; /* На всякий случай фиксируем направление */
-  justify-content: center; /* Центрирует ссылки внутри ряда */
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
   align-items: center;
-  gap: 8px; /* Расстояние от текста до точки */
-  list-style: none; /* Убираем стандартные маркеры списка */
-  padding: 0;
-  margin: 0;
+  gap: 16px; 
+  list-style: none; 
 }
 
-.footer__menu-list-item {
-  display: block;
-  align-items: center;
-}
-
-/* Добавляем разделитель (точку) */
-.footer__menu-list-item::after {
-  content: none !important;
-  display: none !important;
-}
 .footer__menu-link {
   font-size: 18px;
   text-decoration: underline;
@@ -378,11 +334,10 @@ a {
   text-decoration: none;
 }
 
-/* Иконки соцсетей */
 .footer__social-list {
   display: flex;
   justify-self: end;
-  gap: 48px; /* Расстояние между иконками */
+  gap: 48px; 
   list-style: none;
 }
 
@@ -392,7 +347,6 @@ a {
   object-fit: contain;
 }
 
-/* скрываем лишние overlay из HTML */
 .overlay {
   display: none;
 }
