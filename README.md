@@ -4,7 +4,7 @@
 
 ## Ссылка на репозиторий
 
-[GitHub Repository](https://github.com/Jent12312/ono-tebe-nado)
+[GitHub Repository](https://github.com/Jent12312/ono-tebe-nado-ad)
 
 ## Описание
 
